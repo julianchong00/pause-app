@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
-  runApp(const MainApp());
-}
+import 'app.dart';
+import 'providers/profile_provider.dart';
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello 世界!'),
-        ),
-      ),
-    );
-  }
+  final hasProfile = await ProfileNotifier.hasProfile();
+
+  runApp(
+    ProviderScope(
+      child: PauseApp(hasProfile: hasProfile),
+    ),
+  );
 }
