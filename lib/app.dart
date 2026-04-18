@@ -5,6 +5,7 @@ import 'models/purchase_evaluation.dart';
 import 'screens/history/history_screen.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/onboarding/onboarding_screen.dart';
+import 'screens/results/history_result_screen.dart';
 import 'screens/results/results_screen.dart';
 import 'screens/settings/settings_screen.dart';
 import 'theme/app_theme.dart';
@@ -52,6 +53,14 @@ class PauseApp extends StatelessWidget {
           builder: (context, state) {
             final evaluation = state.extra as PurchaseEvaluation;
             return ResultsScreen(evaluation: evaluation);
+          },
+        ),
+        GoRoute(
+          parentNavigatorKey: _rootNavigatorKey,
+          path: '/history/result',
+          builder: (context, state) {
+            final evaluation = state.extra as PurchaseEvaluation;
+            return HistoryResultScreen(evaluation: evaluation);
           },
         ),
       ],

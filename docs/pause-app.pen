@@ -89,7 +89,8 @@
               "width": "fill_container",
               "content": "Pause helps you see every purchase as time — your most valuable currency.",
               "fontFamily": "Inter",
-              "fontSize": 15
+              "fontSize": 15,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -199,7 +200,8 @@
                   "fill": "$--text-secondary",
                   "content": "Monthly take-home pay",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -220,7 +222,8 @@
                       "fill": "$--text-tertiary",
                       "content": "$5,200",
                       "fontFamily": "Inter",
-                      "fontSize": 16
+                      "fontSize": 16,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -240,7 +243,8 @@
                   "fill": "$--text-secondary",
                   "content": "FIRE / savings target",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -261,7 +265,8 @@
                       "fill": "$--text-tertiary",
                       "content": "$750,000",
                       "fontFamily": "Inter",
-                      "fontSize": 16
+                      "fontSize": 16,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -280,7 +285,8 @@
                   "fill": "$--text-tertiary",
                   "content": "Skip for now",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -407,7 +413,8 @@
                   "fill": "$--text-tertiary",
                   "content": "Enter purchase amount",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -430,7 +437,8 @@
                   "fill": "$--text-tertiary",
                   "content": "Nike Air Max 90",
                   "fontFamily": "Inter",
-                  "fontSize": 16
+                  "fontSize": 16,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -600,7 +608,7 @@
                   "type": "text",
                   "id": "HLyKH",
                   "fill": "#111318",
-                  "content": "Reckon It",
+                  "content": "Break It Down",
                   "fontFamily": "Inter",
                   "fontSize": 16,
                   "fontWeight": "600"
@@ -724,7 +732,8 @@
                   "fill": "$--text-tertiary",
                   "content": "purchase price",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -762,7 +771,8 @@
                           "fill": "$--text-secondary",
                           "content": "Hours of your life",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -804,7 +814,8 @@
                           "fill": "$--text-secondary",
                           "content": "Days of work",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -846,7 +857,8 @@
                           "fill": "$--text-secondary",
                           "content": "Of your monthly pay",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -888,7 +900,8 @@
                           "fill": "$--text-secondary",
                           "content": "Value in 10 years at 8%",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -981,7 +994,8 @@
               "content": "Remind me in 3 days",
               "textAlign": "center",
               "fontFamily": "Inter",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -1097,7 +1111,8 @@
                   "width": "fill_container",
                   "content": "4 purchases skipped · 3 approved",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -1154,7 +1169,8 @@
                               "fill": "$--text-secondary",
                               "content": "$249.99",
                               "fontFamily": "Inter",
-                              "fontSize": 14
+                              "fontSize": 14,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "text",
@@ -1173,7 +1189,8 @@
                               "fill": "$--text-tertiary",
                               "content": "Apr 15",
                               "fontFamily": "Inter",
-                              "fontSize": 14
+                              "fontSize": 14,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -1248,7 +1265,8 @@
                               "fill": "$--text-secondary",
                               "content": "$131.88",
                               "fontFamily": "Inter",
-                              "fontSize": 14
+                              "fontSize": 14,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "text",
@@ -1267,7 +1285,8 @@
                               "fill": "$--text-tertiary",
                               "content": "Apr 14",
                               "fontFamily": "Inter",
-                              "fontSize": 14
+                              "fontSize": 14,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -1342,7 +1361,8 @@
                               "fill": "$--text-secondary",
                               "content": "$185.00",
                               "fontFamily": "Inter",
-                              "fontSize": 14
+                              "fontSize": 14,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "text",
@@ -1361,7 +1381,8 @@
                               "fill": "$--text-tertiary",
                               "content": "Apr 12",
                               "fontFamily": "Inter",
-                              "fontSize": 14
+                              "fontSize": 14,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -1436,7 +1457,8 @@
                               "fill": "$--text-secondary",
                               "content": "$249.00",
                               "fontFamily": "Inter",
-                              "fontSize": 14
+                              "fontSize": 14,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "text",
@@ -1455,7 +1477,8 @@
                               "fill": "$--text-tertiary",
                               "content": "Apr 10",
                               "fontFamily": "Inter",
-                              "fontSize": 14
+                              "fontSize": 14,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -1530,7 +1553,8 @@
                               "fill": "$--text-secondary",
                               "content": "$445.00",
                               "fontFamily": "Inter",
-                              "fontSize": 14
+                              "fontSize": 14,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "text",
@@ -1549,7 +1573,8 @@
                               "fill": "$--text-tertiary",
                               "content": "Apr 8",
                               "fontFamily": "Inter",
-                              "fontSize": 14
+                              "fontSize": 14,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -1728,7 +1753,8 @@
                           "fill": "$--text-primary",
                           "content": "Hourly rate",
                           "fontFamily": "Inter",
-                          "fontSize": 16
+                          "fontSize": 16,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "frame",
@@ -1785,7 +1811,8 @@
                           "fill": "$--text-primary",
                           "content": "Monthly take-home",
                           "fontFamily": "Inter",
-                          "fontSize": 16
+                          "fontSize": 16,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "frame",
@@ -1842,7 +1869,8 @@
                           "fill": "$--text-primary",
                           "content": "FIRE target",
                           "fontFamily": "Inter",
-                          "fontSize": 16
+                          "fontSize": 16,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "frame",
@@ -1923,7 +1951,8 @@
                           "fill": "$--text-primary",
                           "content": "Currency",
                           "fontFamily": "Inter",
-                          "fontSize": 16
+                          "fontSize": 16,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "frame",
@@ -1980,7 +2009,8 @@
                           "fill": "$--text-primary",
                           "content": "Default snooze",
                           "fontFamily": "Inter",
-                          "fontSize": 16
+                          "fontSize": 16,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "frame",
@@ -2037,7 +2067,8 @@
                           "fill": "$--text-primary",
                           "content": "Dark mode",
                           "fontFamily": "Inter",
-                          "fontSize": 16
+                          "fontSize": 16,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "frame",
@@ -2111,7 +2142,8 @@
                           "fill": "$--text-primary",
                           "content": "Version",
                           "fontFamily": "Inter",
-                          "fontSize": 16
+                          "fontSize": 16,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -2149,7 +2181,8 @@
                           "fill": "$--text-primary",
                           "content": "Send feedback",
                           "fontFamily": "Inter",
-                          "fontSize": 16
+                          "fontSize": 16,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "icon_font",
@@ -2187,7 +2220,8 @@
                           "fill": "$--text-primary",
                           "content": "Privacy policy",
                           "fontFamily": "Inter",
-                          "fontSize": 16
+                          "fontSize": 16,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "icon_font",
@@ -2378,6 +2412,334 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "6vBSM",
+      "x": 2215,
+      "y": 0,
+      "name": "3b. Results (History View)",
+      "clip": true,
+      "width": 393,
+      "height": 852,
+      "fill": "$--bg-primary",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "OSXbQ",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "padding": [
+            0,
+            24
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "E4H04",
+              "name": "timeLabel",
+              "fill": "$--text-primary",
+              "content": "9:41",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "kCis4",
+          "name": "Content",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            0,
+            20,
+            24,
+            20
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "YhXTI",
+              "name": "Top Bar",
+              "width": "fill_container",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "JQvbo",
+                  "name": "backIcon",
+                  "width": 24,
+                  "height": 24,
+                  "iconFontName": "arrow-left",
+                  "iconFontFamily": "lucide",
+                  "fill": "$--text-primary"
+                },
+                {
+                  "type": "text",
+                  "id": "Qkt0Z",
+                  "name": "itemLabel",
+                  "fill": "$--text-secondary",
+                  "content": "Nike Air Max 90",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KGETz",
+              "name": "Hero Amount",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "VhLCx",
+                  "name": "heroAmount",
+                  "fill": "$--text-primary",
+                  "content": "$249.99",
+                  "fontFamily": "Inter",
+                  "fontSize": 48,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "Ulg1x",
+                  "name": "heroLabel",
+                  "fill": "$--text-tertiary",
+                  "content": "purchase price",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "grhv7",
+                  "name": "Date Wrapper",
+                  "padding": [
+                    6,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "baSHE",
+                      "name": "heroDate",
+                      "fill": "$--text-tertiary",
+                      "content": "Apr 15, 2025",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "XwrVv",
+              "name": "Stat Cards",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "r4EXw",
+                  "name": "Hours Card",
+                  "width": "fill_container",
+                  "fill": "$--bg-card",
+                  "cornerRadius": "$--radius-md",
+                  "padding": 20,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "g8uLN",
+                      "name": "card1Left",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "E1yTH",
+                          "name": "card1Label",
+                          "fill": "$--text-secondary",
+                          "content": "Hours of your life",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "uK3kd",
+                      "name": "card1Value",
+                      "fill": "$--text-primary",
+                      "content": "14.3 hrs",
+                      "fontFamily": "Inter",
+                      "fontSize": 28,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "INeKf",
+                  "name": "Days Card",
+                  "width": "fill_container",
+                  "fill": "$--bg-card",
+                  "cornerRadius": "$--radius-md",
+                  "padding": 20,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "eE4HI",
+                      "name": "card2Left",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "v6UcK",
+                          "name": "card2Label",
+                          "fill": "$--text-secondary",
+                          "content": "Days of work",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "jzHqa",
+                      "name": "card2Value",
+                      "fill": "$--text-primary",
+                      "content": "1.8 days",
+                      "fontFamily": "Inter",
+                      "fontSize": 28,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "NZMdM",
+                  "name": "Monthly Card",
+                  "width": "fill_container",
+                  "fill": "$--bg-card",
+                  "cornerRadius": "$--radius-md",
+                  "padding": 20,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "d7qQb",
+                      "name": "card3Left",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "oTfXx",
+                          "name": "card3Label",
+                          "fill": "$--text-secondary",
+                          "content": "Of your monthly pay",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "ClSZn",
+                      "name": "card3Value",
+                      "fill": "$--text-primary",
+                      "content": "6.2%",
+                      "fontFamily": "Inter",
+                      "fontSize": 28,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "jQZVs",
+                  "name": "Opportunity Card",
+                  "width": "fill_container",
+                  "fill": "$--bg-card",
+                  "cornerRadius": "$--radius-md",
+                  "padding": 20,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "1N174",
+                      "name": "card4Left",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "mXKUV",
+                          "name": "card4Label",
+                          "fill": "$--text-secondary",
+                          "content": "Value in 10 years at 8%",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "iGmqH",
+                      "name": "card4Value",
+                      "fill": "$--accent",
+                      "content": "$2,960",
+                      "fontFamily": "Inter",
+                      "fontSize": 28,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "O1wtI",
+          "type": "ref",
+          "ref": "VlBPj",
+          "name": "navRef"
         }
       ]
     }

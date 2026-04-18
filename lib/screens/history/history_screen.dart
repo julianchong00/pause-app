@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../theme/app_theme.dart';
@@ -99,7 +100,9 @@ class HistoryScreen extends ConsumerWidget {
               separatorBuilder: (_, _) => const SizedBox(height: 12),
               itemBuilder: (context, index) {
                 final item = history[index];
-                return Container(
+                return GestureDetector(
+                  onTap: () => context.push('/history/result', extra: item),
+                  child: Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: AppColors.surfaceAlt,
@@ -147,6 +150,7 @@ class HistoryScreen extends ConsumerWidget {
                         DecisionBadge(worthIt: item.worthIt!),
                     ],
                   ),
+                ),
                 );
               },
             ),
