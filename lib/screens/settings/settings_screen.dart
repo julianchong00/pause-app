@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../../theme/app_theme.dart';
+import '../../constants.dart';
+import '../../providers/currency_provider.dart';
 import '../../providers/profile_provider.dart';
+import '../../theme/app_theme.dart';
+import '../../widgets/currency_picker_sheet.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -12,7 +14,7 @@ class SettingsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final profile = ref.watch(profileProvider);
-    final currencyFormat = NumberFormat.currency(locale: 'en_AU', symbol: '\$');
+    final currencyFormat = ref.watch(currencyFormatProvider);
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -100,20 +102,9 @@ class SettingsScreen extends ConsumerWidget {
                 children: [
                   _SettingsRow(
                     label: 'Currency',
-                    value: '${profile?.currency ?? "USD"} (\$)',
-                    onTap: () => _showEditSheet(
-                      context,
-                      ref,
-                      title: 'Currency code',
-                      initialValue: profile?.currency ?? 'USD',
-                      isText: true,
-                      onSave: (val) {
-                        if (profile == null || val.isEmpty) return;
-                        ref.read(profileProvider.notifier).updateProfile(
-                              profile.copyWith(currency: val.toUpperCase()),
-                            );
-                      },
-                    ),
+                    value:
+                        '${profile?.currency ?? kDefaultCurrency} (${currencyFormat.currencySymbol})',
+                    onTap: () => showCurrencyPickerSheet(context, ref),
                   ),
                   const _Divider(),
                   _SettingsRow(
@@ -171,7 +162,6 @@ class SettingsScreen extends ConsumerWidget {
     required String title,
     required String initialValue,
     required ValueChanged<String> onSave,
-    bool isText = false,
   }) {
     final controller = TextEditingController(text: initialValue);
     showModalBottomSheet(
@@ -198,9 +188,7 @@ class SettingsScreen extends ConsumerWidget {
               controller: controller,
               autofocus: true,
               style: AppTextStyles.body,
-              keyboardType: isText
-                  ? TextInputType.text
-                  : const TextInputType.numberWithOptions(decimal: true),
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
               decoration: InputDecoration(
                 filled: true,
                 fillColor: AppColors.surfaceAlt,
