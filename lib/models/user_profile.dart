@@ -1,3 +1,5 @@
+import '../constants.dart';
+
 class UserProfile {
   final double annualSalary;
   final bool isHourlyRate;
@@ -11,7 +13,7 @@ class UserProfile {
     this.isHourlyRate = false,
     this.monthlyTakeHome,
     this.fireTarget,
-    this.currency = 'USD',
+    this.currency = kDefaultCurrency,
     this.snoozeDays = 3,
   });
 
@@ -53,7 +55,7 @@ class UserProfile {
         isHourlyRate: map['isHourlyRate'] as bool? ?? false,
         monthlyTakeHome: (map['monthlyTakeHome'] as num?)?.toDouble(),
         fireTarget: (map['fireTarget'] as num?)?.toDouble(),
-        currency: map['currency'] as String? ?? 'USD',
+        currency: map['currency'] as String? ?? kDefaultCurrency,
         snoozeDays: map['snoozeDays'] as int? ?? 3,
       );
 }

@@ -34,7 +34,7 @@ class AppRadius {
 class AppTextStyles {
   const AppTextStyles._();
 
-  static TextStyle get heroNumber => GoogleFonts.playfairDisplay(
+  static TextStyle get heroNumber => GoogleFonts.inter(
         fontSize: 48,
         fontWeight: FontWeight.w900,
         color: AppColors.textPrimary,
