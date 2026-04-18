@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 
 import '../../theme/app_theme.dart';
 import '../../models/purchase_evaluation.dart';
+import '../../providers/currency_provider.dart';
 import '../../providers/profile_provider.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -59,8 +59,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final profile = ref.watch(profileProvider);
     final hourlyRate = profile?.hourlyRate ?? 0;
-    final currencyFormat = NumberFormat.currency(locale: 'en_AU', symbol: '\$');
-    final hasPrice = _priceController.text.replaceAll(',', '').replaceAll('\$', '').isNotEmpty;
+    final currencyFormat = ref.watch(currencyFormatProvider);
+    final currencySymbol = currencyFormat.currencySymbol;
+    final hasPrice = _priceController.text
+        .replaceAll(',', '')
+        .replaceAll(currencySymbol, '')
+        .isNotEmpty;
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -98,12 +102,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       ],
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: '\$0.00',
+                        hintText: '0.00',
                         hintStyle: AppTextStyles.heroNumber.copyWith(
                           color: AppColors.textTertiary,
                         ),
-                        prefixText: '\$',
-                        prefixStyle: AppTextStyles.heroNumber,
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.only(left: 16, right: 8),
+                          child: Text(
+                            currencySymbol,
+                            style: AppTextStyles.heroNumber,
+                          ),
+                        ),
+                        prefixIconConstraints: const BoxConstraints(
+                          minWidth: 0,
+                          minHeight: 0,
+                        ),
                       ),
                       onChanged: (_) => setState(() {}),
                     ),
@@ -184,7 +197,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
               const SizedBox(height: 24),
 
-              // Reckon It button
+              // Break It Down button
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -199,7 +212,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       borderRadius: BorderRadius.circular(AppRadius.card),
                     ),
                   ),
-                  child: Text('Reckon It', style: AppTextStyles.button),
+                  child: Text('Break It Down', style: AppTextStyles.button),
                 ),
               ),
               const SizedBox(height: 24),
