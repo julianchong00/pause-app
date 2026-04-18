@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 
 import '../../theme/app_theme.dart';
 import '../../models/purchase_evaluation.dart';
 import '../../providers/profile_provider.dart';
 import '../../providers/history_provider.dart';
+import '../../providers/currency_provider.dart';
 import '../../widgets/stat_card.dart';
 
 class ResultsScreen extends ConsumerWidget {
@@ -19,7 +19,7 @@ class ResultsScreen extends ConsumerWidget {
     final profile = ref.watch(profileProvider);
     final hourlyRate = profile?.hourlyRate ?? 0;
     final monthlyTakeHome = profile?.effectiveMonthlyTakeHome ?? 0;
-    final currencyFormat = NumberFormat.currency(locale: 'en_AU', symbol: '\$');
+    final currencyFormat = ref.watch(currencyFormatProvider);
 
     final hours = evaluation.hoursOfLife(hourlyRate);
     final days = evaluation.daysOfWork(hourlyRate);
