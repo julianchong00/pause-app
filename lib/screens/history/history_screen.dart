@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../theme/app_theme.dart';
+import '../../providers/currency_provider.dart';
 import '../../providers/history_provider.dart';
 import '../../widgets/decision_badge.dart';
 
@@ -13,7 +14,7 @@ class HistoryScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final history = ref.watch(historyProvider);
     final notifier = ref.read(historyProvider.notifier);
-    final currencyFormat = NumberFormat.currency(locale: 'en_AU', symbol: '\$');
+    final currencyFormat = ref.watch(currencyFormatProvider);
     final dateFormat = DateFormat('MMM d');
 
     return Scaffold(
