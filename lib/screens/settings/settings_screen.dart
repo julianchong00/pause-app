@@ -162,7 +162,6 @@ class SettingsScreen extends ConsumerWidget {
     required String title,
     required String initialValue,
     required ValueChanged<String> onSave,
-    bool isText = false,
   }) {
     final controller = TextEditingController(text: initialValue);
     showModalBottomSheet(
@@ -189,9 +188,7 @@ class SettingsScreen extends ConsumerWidget {
               controller: controller,
               autofocus: true,
               style: AppTextStyles.body,
-              keyboardType: isText
-                  ? TextInputType.text
-                  : const TextInputType.numberWithOptions(decimal: true),
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
               decoration: InputDecoration(
                 filled: true,
                 fillColor: AppColors.surfaceAlt,
