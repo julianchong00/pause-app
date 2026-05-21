@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' show defaultTargetPlatform;
+import 'package:flutter/foundation.dart' show debugPrint, defaultTargetPlatform;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 import 'package:package_info_plus/package_info_plus.dart';
@@ -44,7 +44,8 @@ Future<void> sendFeedback(BuildContext context) async {
     if (!launched && context.mounted) {
       await _showFallback(context);
     }
-  } catch (_) {
+  } catch (error, stack) {
+    debugPrint('sendFeedback failed: $error\n$stack');
     if (context.mounted) {
       await _showFallback(context);
     }
