@@ -16,7 +16,9 @@ These are legal-compliance issues or visibly broken UI that would either get the
 
 - [ ] **"Remind me" snooze button is non-functional** — `lib/screens/results/results_screen.dart:162` has a TODO for `flutter_local_notifications`. Either implement notification-based reminders or remove the button. Apple flags non-functional UI in review.
 
-- [ ] **Feedback button is a stub** — `lib/screens/settings/settings_screen.dart:143` has an empty `onTap`. Wire to a `mailto:` URL or remove the row.
+- [ ] **Feedback button is a stub** — `lib/screens/settings/settings_screen.dart:143` has an empty `onTap`. Wire to a `mailto:` URL or remove the row. Spec: `docs/superpowers/specs/2026-05-21-feedback-button-design.md`.
+
+- [ ] **Register a domain and configure feedback email** — The feedback button spec uses a placeholder address (`feedback@pause.app`) backed by an unregistered domain. Before shipping, register a real domain (or pick a free alternative like a Gmail address), set up email forwarding, and update `kFeedbackEmail` in `lib/constants.dart`. Without this, feedback emails bounce.
 
 - [ ] **Dark mode toggle is non-functional** — Settings has a toggle that does nothing; app is hardcoded to dark theme. Either implement light/dark/system theme switching with persistence, or remove the toggle.
 
