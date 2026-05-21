@@ -1,5 +1,7 @@
 const kDefaultCurrency = 'USD';
 
+const String kFeedbackEmail = 'feedback@pause.app';
+
 const kSupportedCurrencies = <String>[
   'USD', 'EUR', 'GBP', 'JPY', 'AUD', 'CAD', 'CHF', 'CNY', 'NZD', 'SGD',
   'INR', 'HKD', 'KRW', 'SEK', 'NOK', 'DKK', 'MXN', 'BRL', 'ZAR', 'THB',

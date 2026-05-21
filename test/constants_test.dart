@@ -23,4 +23,15 @@ void main() {
       }
     });
   });
+
+  group('kFeedbackEmail', () {
+    test('is non-empty', () {
+      expect(kFeedbackEmail, isNotEmpty);
+    });
+
+    test('looks like an email address', () {
+      expect(kFeedbackEmail, contains('@'));
+      expect(kFeedbackEmail, matches(RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')));
+    });
+  });
 }
