@@ -6,6 +6,7 @@ import '../../constants.dart';
 import '../../providers/currency_provider.dart';
 import '../../providers/profile_provider.dart';
 import '../../theme/app_theme.dart';
+import '../../utils/feedback.dart';
 import '../../widgets/currency_picker_sheet.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -140,7 +141,7 @@ class SettingsScreen extends ConsumerWidget {
                   const _Divider(),
                   _SettingsRow(
                     label: 'Send feedback',
-                    onTap: () {},
+                    onTap: () => sendFeedback(context),
                   ),
                   const _Divider(),
                   _SettingsRow(
