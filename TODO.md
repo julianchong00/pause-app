@@ -44,6 +44,8 @@ Items the audit flagged as minor or items already in the original TODO. Mostly s
 
 - [ ] **Item name contrast on results screen** — Text contrast is too low on history result screen item names.
 
+- [ ] **Revisit onboarding currency row styling** — The inline "Currency" row added to Step 1 of onboarding (between subtitle and Annual/Hourly toggle) is functionally fine but borrows the Settings row idiom verbatim (label + value + chevron on a `bg-input` card). Consider a treatment that feels more native to the onboarding screen — e.g. a compact pill, integrating the currency into the salary input prefix, or a less heavy visual weight so it doesn't compete with the toggle and amount input directly below it.
+
 - [ ] **FIRE target is dead weight** — Stored on profile and editable in Settings but never used in any calculation. Either surface it on the Results screen ("this purchase delays your FIRE date by X days") or remove the field entirely.
 
 - [ ] **Per-row `NumberFormat` construction in currency picker** — `lib/widgets/currency_picker_sheet.dart:79` calls `NumberFormat.simpleCurrency(name: code)` inside `ListView.builder`'s `itemBuilder`. Negligible impact for ~30 items but trivially cacheable; precompute `{code: symbol}` once on sheet build.
