@@ -1,5 +1,5 @@
 {
-  "version": "2.11",
+  "version": "2.13",
   "children": [
     {
       "type": "frame",
@@ -91,6 +91,58 @@
               "fontFamily": "Inter",
               "fontSize": 15,
               "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "lIVAd",
+              "name": "Currency Row",
+              "width": "fill_container",
+              "fill": "$--bg-input",
+              "cornerRadius": "$--radius-md",
+              "padding": 16,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "obSZM",
+                  "name": "currencyLabel",
+                  "fill": "$--text-secondary",
+                  "content": "Currency",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "tV4k5",
+                  "name": "currencyValue",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jWBlX",
+                      "name": "currencyValueText",
+                      "fill": "$--text-primary",
+                      "content": "USD ($)",
+                      "fontFamily": "Inter",
+                      "fontSize": 16,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "m7szU",
+                      "name": "currencyChevron",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "chevron-right",
+                      "library": "lucide",
+                      "fill": "$--text-tertiary"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "type": "frame",
@@ -463,12 +515,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "FZXGL",
                       "width": 20,
                       "height": 20,
-                      "iconFontName": "utensils",
-                      "iconFontFamily": "lucide",
+                      "icon": "utensils",
+                      "library": "lucide",
                       "fill": "$--text-tertiary"
                     }
                   ]
@@ -486,12 +538,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "mRrRP",
                       "width": 20,
                       "height": 20,
-                      "iconFontName": "shirt",
-                      "iconFontFamily": "lucide",
+                      "icon": "shirt",
+                      "library": "lucide",
                       "fill": "$--accent"
                     }
                   ]
@@ -509,12 +561,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "jrbbZ",
                       "width": 20,
                       "height": 20,
-                      "iconFontName": "laptop",
-                      "iconFontFamily": "lucide",
+                      "icon": "laptop",
+                      "library": "lucide",
                       "fill": "$--text-tertiary"
                     }
                   ]
@@ -532,12 +584,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "YQI2B",
                       "width": 20,
                       "height": 20,
-                      "iconFontName": "car",
-                      "iconFontFamily": "lucide",
+                      "icon": "car",
+                      "library": "lucide",
                       "fill": "$--text-tertiary"
                     }
                   ]
@@ -555,12 +607,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "YGVO2",
                       "width": 20,
                       "height": 20,
-                      "iconFontName": "sparkles",
-                      "iconFontFamily": "lucide",
+                      "icon": "sparkles",
+                      "library": "lucide",
                       "fill": "$--text-tertiary"
                     }
                   ]
@@ -578,12 +630,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "4pAN9",
                       "width": 20,
                       "height": 20,
-                      "iconFontName": "ellipsis",
-                      "iconFontFamily": "lucide",
+                      "icon": "ellipsis",
+                      "library": "lucide",
                       "fill": "$--text-tertiary"
                     }
                   ]
@@ -685,13 +737,13 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "icon_font",
+                  "type": "icon",
                   "id": "lCspi",
                   "name": "backIcon",
                   "width": 24,
                   "height": 24,
-                  "iconFontName": "arrow-left",
-                  "iconFontFamily": "lucide",
+                  "icon": "arrow-left",
+                  "library": "lucide",
                   "fill": "$--text-primary"
                 },
                 {
@@ -932,11 +984,9 @@
                   "name": "Not Worth It Btn",
                   "width": "fill_container",
                   "cornerRadius": "$--radius-md",
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1.5,
-                    "fill": "$--border"
-                  },
+                  "stroke": "$--border",
+                  "strokeWidth": 1.5,
+                  "strokeAlignment": "inner",
                   "padding": [
                     18,
                     0
@@ -1774,13 +1824,13 @@
                               "fontWeight": "500"
                             },
                             {
-                              "type": "icon_font",
+                              "type": "icon",
                               "id": "WIeGx",
                               "name": "pRow1Chevron",
                               "width": 16,
                               "height": 16,
-                              "iconFontName": "chevron-right",
-                              "iconFontFamily": "lucide",
+                              "icon": "chevron-right",
+                              "library": "lucide",
                               "fill": "$--text-tertiary"
                             }
                           ]
@@ -1832,13 +1882,13 @@
                               "fontWeight": "500"
                             },
                             {
-                              "type": "icon_font",
+                              "type": "icon",
                               "id": "luhFP",
                               "name": "pRow2Chevron",
                               "width": 16,
                               "height": 16,
-                              "iconFontName": "chevron-right",
-                              "iconFontFamily": "lucide",
+                              "icon": "chevron-right",
+                              "library": "lucide",
                               "fill": "$--text-tertiary"
                             }
                           ]
@@ -1890,13 +1940,13 @@
                               "fontWeight": "500"
                             },
                             {
-                              "type": "icon_font",
+                              "type": "icon",
                               "id": "PVdph",
                               "name": "pRow3Chevron",
                               "width": 16,
                               "height": 16,
-                              "iconFontName": "chevron-right",
-                              "iconFontFamily": "lucide",
+                              "icon": "chevron-right",
+                              "library": "lucide",
                               "fill": "$--text-tertiary"
                             }
                           ]
@@ -1972,13 +2022,13 @@
                               "fontWeight": "500"
                             },
                             {
-                              "type": "icon_font",
+                              "type": "icon",
                               "id": "kiATT",
                               "name": "cRow1Chevron",
                               "width": 16,
                               "height": 16,
-                              "iconFontName": "chevron-right",
-                              "iconFontFamily": "lucide",
+                              "icon": "chevron-right",
+                              "library": "lucide",
                               "fill": "$--text-tertiary"
                             }
                           ]
@@ -2030,13 +2080,13 @@
                               "fontWeight": "500"
                             },
                             {
-                              "type": "icon_font",
+                              "type": "icon",
                               "id": "0IfEM",
                               "name": "cRow2Chevron",
                               "width": 16,
                               "height": 16,
-                              "iconFontName": "chevron-right",
-                              "iconFontFamily": "lucide",
+                              "icon": "chevron-right",
+                              "library": "lucide",
                               "fill": "$--text-tertiary"
                             }
                           ]
@@ -2185,13 +2235,13 @@
                           "fontWeight": "normal"
                         },
                         {
-                          "type": "icon_font",
+                          "type": "icon",
                           "id": "n9zvN",
                           "name": "aRow2Chevron",
                           "width": 16,
                           "height": 16,
-                          "iconFontName": "chevron-right",
-                          "iconFontFamily": "lucide",
+                          "icon": "chevron-right",
+                          "library": "lucide",
                           "fill": "$--text-tertiary"
                         }
                       ]
@@ -2224,13 +2274,13 @@
                           "fontWeight": "normal"
                         },
                         {
-                          "type": "icon_font",
+                          "type": "icon",
                           "id": "zlviR",
                           "name": "aRow3Chevron",
                           "width": 16,
                           "height": 16,
-                          "iconFontName": "chevron-right",
-                          "iconFontFamily": "lucide",
+                          "icon": "chevron-right",
+                          "library": "lucide",
                           "fill": "$--text-tertiary"
                         }
                       ]
@@ -2298,11 +2348,9 @@
           "height": 62,
           "fill": "$--nav-bg",
           "cornerRadius": "$--radius-pill",
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "$--nav-border"
-          },
+          "stroke": "$--nav-border",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "padding": 4,
           "children": [
             {
@@ -2319,13 +2367,13 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "icon_font",
+                  "type": "icon",
                   "id": "917ZH",
                   "name": "icon1",
                   "width": 18,
                   "height": 18,
-                  "iconFontName": "calculator",
-                  "iconFontFamily": "lucide",
+                  "icon": "calculator",
+                  "library": "lucide",
                   "fill": "#111318"
                 },
                 {
@@ -2354,13 +2402,13 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "icon_font",
+                  "type": "icon",
                   "id": "11Kjc",
                   "name": "icon2",
                   "width": 18,
                   "height": 18,
-                  "iconFontName": "clock-4",
-                  "iconFontFamily": "lucide",
+                  "icon": "clock-4",
+                  "library": "lucide",
                   "fill": "$--text-tertiary"
                 },
                 {
@@ -2389,13 +2437,13 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "icon_font",
+                  "type": "icon",
                   "id": "BGZRW",
                   "name": "icon3",
                   "width": 18,
                   "height": 18,
-                  "iconFontName": "user",
-                  "iconFontFamily": "lucide",
+                  "icon": "user",
+                  "library": "lucide",
                   "fill": "$--text-tertiary"
                 },
                 {
@@ -2476,13 +2524,13 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "icon_font",
+                  "type": "icon",
                   "id": "JQvbo",
                   "name": "backIcon",
                   "width": 24,
                   "height": 24,
-                  "iconFontName": "arrow-left",
-                  "iconFontFamily": "lucide",
+                  "icon": "arrow-left",
+                  "library": "lucide",
                   "fill": "$--text-primary"
                 },
                 {
