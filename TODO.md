@@ -12,7 +12,7 @@ These are legal-compliance issues or visibly broken UI that would either get the
 
 - [ ] **Privacy policy** — `lib/screens/settings/settings_screen.dart:148` has an empty `onTap`. Both Apple and Google require a working privacy policy for any app that stores user data (pause stores salary + spending). Host a policy (GitHub Pages or similar) and wire the link handler.
 
-- [ ] **Onboarding currency hardcoding** — `lib/screens/onboarding/onboarding_screen.dart:245,294,300` shows `$` prefix and `$5,200` / `$750,000` placeholders regardless of locale. A non-USD user enters salary in `$` then sees their selected currency everywhere afterward. Resolve by exposing the currency picker during onboarding (step 1 or pre-step-1) and threading the selection through the placeholders.
+- [x] **Onboarding currency hardcoding** — `lib/screens/onboarding/onboarding_screen.dart:245,294,300` shows `$` prefix and `$5,200` / `$750,000` placeholders regardless of locale. A non-USD user enters salary in `$` then sees their selected currency everywhere afterward. Resolve by exposing the currency picker during onboarding (step 1 or pre-step-1) and threading the selection through the placeholders. Spec: `docs/superpowers/specs/2026-06-04-onboarding-currency-design.md`.
 
 - [ ] **"Remind me" snooze button is non-functional** — `lib/screens/results/results_screen.dart:162` has a TODO for `flutter_local_notifications`. Either implement notification-based reminders or remove the button. Apple flags non-functional UI in review.
 
@@ -43,6 +43,10 @@ These won't get the app rejected but represent meaningful regression risk or pol
 Items the audit flagged as minor or items already in the original TODO. Mostly safe to defer to post-launch but cheap to knock out if time permits.
 
 - [ ] **Item name contrast on results screen** — Text contrast is too low on history result screen item names.
+
+- [ ] **Worth It / Not Worth It buttons should navigate to History** — On the results screen, tapping either decision button currently returns the user to Home. They should land on the History screen instead, so the user immediately sees the decision they just logged in context with prior ones. Check `lib/screens/results/results_screen.dart` for the current pop/push targets.
+
+- [ ] **Revisit onboarding currency row styling** — The inline "Currency" row added to Step 1 of onboarding (between subtitle and Annual/Hourly toggle) is functionally fine but borrows the Settings row idiom verbatim (label + value + chevron on a `bg-input` card). Consider a treatment that feels more native to the onboarding screen — e.g. a compact pill, integrating the currency into the salary input prefix, or a less heavy visual weight so it doesn't compete with the toggle and amount input directly below it.
 
 - [ ] **FIRE target is dead weight** — Stored on profile and editable in Settings but never used in any calculation. Either surface it on the Results screen ("this purchase delays your FIRE date by X days") or remove the field entirely.
 
