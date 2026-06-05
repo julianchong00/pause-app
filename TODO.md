@@ -12,7 +12,7 @@ These are legal-compliance issues or visibly broken UI that would either get the
 
 - [ ] **Privacy policy** — `lib/screens/settings/settings_screen.dart:148` has an empty `onTap`. Both Apple and Google require a working privacy policy for any app that stores user data (pause stores salary + spending). Host a policy (GitHub Pages or similar) and wire the link handler.
 
-- [ ] **Onboarding currency hardcoding** — `lib/screens/onboarding/onboarding_screen.dart:245,294,300` shows `$` prefix and `$5,200` / `$750,000` placeholders regardless of locale. A non-USD user enters salary in `$` then sees their selected currency everywhere afterward. Resolve by exposing the currency picker during onboarding (step 1 or pre-step-1) and threading the selection through the placeholders.
+- [x] **Onboarding currency hardcoding** — `lib/screens/onboarding/onboarding_screen.dart:245,294,300` shows `$` prefix and `$5,200` / `$750,000` placeholders regardless of locale. A non-USD user enters salary in `$` then sees their selected currency everywhere afterward. Resolve by exposing the currency picker during onboarding (step 1 or pre-step-1) and threading the selection through the placeholders. Spec: `docs/superpowers/specs/2026-06-04-onboarding-currency-design.md`.
 
 - [ ] **"Remind me" snooze button is non-functional** — `lib/screens/results/results_screen.dart:162` has a TODO for `flutter_local_notifications`. Either implement notification-based reminders or remove the button. Apple flags non-functional UI in review.
 
