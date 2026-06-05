@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
-import '../../theme/app_theme.dart';
 import '../../models/user_profile.dart';
 import '../../providers/profile_provider.dart';
+import '../../theme/app_theme.dart';
+import '../../utils/locale_currency.dart';
+import '../../widgets/currency_picker_sheet.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -18,10 +21,20 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final _pageController = PageController();
   int _currentPage = 0;
   bool _isHourlyRate = false;
+  late String _selectedCurrency;
 
   final _salaryController = TextEditingController();
   final _takeHomeController = TextEditingController();
   final _fireController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedCurrency = detectCurrencyFromLocale();
+  }
+
+  String get _currencySymbol =>
+      NumberFormat.simpleCurrency(name: _selectedCurrency).currencySymbol;
 
   @override
   void dispose() {
@@ -59,6 +72,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       isHourlyRate: _isHourlyRate,
       monthlyTakeHome: takeHome,
       fireTarget: fireTarget,
+      currency: _selectedCurrency,
     );
 
     ref.read(profileProvider.notifier).saveProfile(profile);
@@ -165,10 +179,55 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             style: AppTextStyles.label,
           ),
           const SizedBox(height: 28),
+          _buildCurrencyRow(),
+          const SizedBox(height: 28),
           _buildToggle(),
           const SizedBox(height: 28),
           _buildSalaryInput(),
         ],
+      ),
+    );
+  }
+
+  Widget _buildCurrencyRow() {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        showCurrencyPickerSheet(
+          context,
+          ref,
+          selected: _selectedCurrency,
+          onSelect: (code) => setState(() => _selectedCurrency = code),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: AppColors.surface,
+          borderRadius: BorderRadius.circular(AppRadius.card),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Currency', style: AppTextStyles.label),
+            Row(
+              children: [
+                Text(
+                  '$_selectedCurrency ($_currencySymbol)',
+                  style: AppTextStyles.body.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(width: 4),
+                const Icon(
+                  Icons.chevron_right,
+                  size: 16,
+                  color: AppColors.textTertiary,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -242,7 +301,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       child: Row(
         children: [
           Text(
-            '\$',
+            _currencySymbol,
             style: AppTextStyles.heading.copyWith(
               color: AppColors.textTertiary,
             ),
@@ -291,13 +350,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           _buildOptionalField(
             label: 'Monthly take-home pay',
             controller: _takeHomeController,
-            hint: '\$5,200',
+            hint: '${_currencySymbol}5,200',
           ),
           const SizedBox(height: 28),
           _buildOptionalField(
             label: 'FIRE / savings target',
             controller: _fireController,
-            hint: '\$750,000',
+            hint: '${_currencySymbol}750,000',
           ),
         ],
       ),
