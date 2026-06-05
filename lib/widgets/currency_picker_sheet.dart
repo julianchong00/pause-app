@@ -6,7 +6,23 @@ import '../constants.dart';
 import '../providers/profile_provider.dart';
 import '../theme/app_theme.dart';
 
-Future<void> showCurrencyPickerSheet(BuildContext context, WidgetRef ref) {
+/// Opens the currency picker bottom sheet.
+///
+/// When [onSelect] is null (the Settings call site), the picker writes the
+/// chosen code into [profileProvider] via `updateProfile` — the existing
+/// behaviour. When [onSelect] is provided (Onboarding, where no profile
+/// exists yet), the picker calls [onSelect] with the chosen code and pops,
+/// skipping the profile write entirely.
+///
+/// [selected] overrides the source used for the trailing check mark and the
+/// initial scroll-into-view. Pass it from any caller that maintains its own
+/// notion of the "currently selected" currency outside of [profileProvider].
+Future<void> showCurrencyPickerSheet(
+  BuildContext context,
+  WidgetRef ref, {
+  String? selected,
+  ValueChanged<String>? onSelect,
+}) {
   return showModalBottomSheet<void>(
     context: context,
     backgroundColor: AppColors.surface,
@@ -14,12 +30,18 @@ Future<void> showCurrencyPickerSheet(BuildContext context, WidgetRef ref) {
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
     ),
     isScrollControlled: true,
-    builder: (_) => const _CurrencyPickerSheet(),
+    builder: (_) => _CurrencyPickerSheet(
+      selectedOverride: selected,
+      onSelect: onSelect,
+    ),
   );
 }
 
 class _CurrencyPickerSheet extends ConsumerStatefulWidget {
-  const _CurrencyPickerSheet();
+  const _CurrencyPickerSheet({this.selectedOverride, this.onSelect});
+
+  final String? selectedOverride;
+  final ValueChanged<String>? onSelect;
 
   @override
   ConsumerState<_CurrencyPickerSheet> createState() =>
@@ -42,11 +64,14 @@ class _CurrencyPickerSheetState extends ConsumerState<_CurrencyPickerSheet> {
     super.dispose();
   }
 
+  String _currentCode() {
+    final profile = ref.read(profileProvider);
+    return widget.selectedOverride ?? profile?.currency ?? kDefaultCurrency;
+  }
+
   void _scrollToSelected() {
     if (!_scrollController.hasClients) return;
-    final profile = ref.read(profileProvider);
-    final current = profile?.currency ?? kDefaultCurrency;
-    final index = kSupportedCurrencies.indexOf(current);
+    final index = kSupportedCurrencies.indexOf(_currentCode());
     if (index <= 0) return;
     const rowHeight = 56.0;
     _scrollController.jumpTo(
@@ -57,7 +82,8 @@ class _CurrencyPickerSheetState extends ConsumerState<_CurrencyPickerSheet> {
   @override
   Widget build(BuildContext context) {
     final profile = ref.watch(profileProvider);
-    final current = profile?.currency ?? kDefaultCurrency;
+    final current =
+        widget.selectedOverride ?? profile?.currency ?? kDefaultCurrency;
 
     return SafeArea(
       top: false,
@@ -76,16 +102,20 @@ class _CurrencyPickerSheetState extends ConsumerState<_CurrencyPickerSheet> {
                 itemCount: kSupportedCurrencies.length,
                 itemBuilder: (context, index) {
                   final code = kSupportedCurrencies[index];
-                  final symbol = NumberFormat.simpleCurrency(name: code)
-                      .currencySymbol;
+                  final symbol =
+                      NumberFormat.simpleCurrency(name: code).currencySymbol;
                   final isSelected = code == current;
                   return InkWell(
                     onTap: () async {
-                      final p = ref.read(profileProvider);
-                      if (p != null) {
-                        await ref
-                            .read(profileProvider.notifier)
-                            .updateProfile(p.copyWith(currency: code));
+                      if (widget.onSelect != null) {
+                        widget.onSelect!(code);
+                      } else {
+                        final p = ref.read(profileProvider);
+                        if (p != null) {
+                          await ref
+                              .read(profileProvider.notifier)
+                              .updateProfile(p.copyWith(currency: code));
+                        }
                       }
                       if (context.mounted) Navigator.of(context).pop();
                     },
