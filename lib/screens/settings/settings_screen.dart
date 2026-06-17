@@ -7,6 +7,7 @@ import '../../providers/currency_provider.dart';
 import '../../providers/profile_provider.dart';
 import '../../theme/app_theme.dart';
 import '../../utils/feedback.dart';
+import '../../utils/privacy.dart';
 import '../../widgets/currency_picker_sheet.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -146,7 +147,7 @@ class SettingsScreen extends ConsumerWidget {
                   const _Divider(),
                   _SettingsRow(
                     label: 'Privacy policy',
-                    onTap: () {},
+                    onTap: () => openPrivacyPolicy(context),
                   ),
                 ],
               ),
