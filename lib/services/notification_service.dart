@@ -9,6 +9,9 @@ import '../models/purchase_evaluation.dart';
 
 /// Maps a purchase uuid to a stable, non-negative 32-bit notification id so
 /// scheduling and cancelling target the same OS notification.
+///
+/// String.hashCode collisions are theoretically possible but negligible for
+/// the handful of concurrently-snoozed purchases this app has; accepted tradeoff.
 int notificationIdFor(String purchaseId) => purchaseId.hashCode & 0x7fffffff;
 
 /// Abstraction over local notifications so widgets/providers can be tested
@@ -37,6 +40,8 @@ abstract class NotificationService {
 class FlutterLocalNotificationService implements NotificationService {
   final FlutterLocalNotificationsPlugin _plugin =
       FlutterLocalNotificationsPlugin();
+  // App-lifetime singleton — intentionally never closed; closing it would break
+  // `onSelect` for the remainder of the app's life.
   final StreamController<PurchaseEvaluation> _selectController =
       StreamController<PurchaseEvaluation>.broadcast();
 
@@ -55,6 +60,9 @@ class FlutterLocalNotificationService implements NotificationService {
       requestBadgePermission: false,
       requestSoundPermission: false,
     );
+    // `onDidReceiveBackgroundNotificationResponse` (background-isolate taps) is
+    // intentionally not wired — the foreground callback below plus
+    // `initialEvaluation()` cold-start path together cover all tap-to-reopen cases.
     await _plugin.initialize(
       const InitializationSettings(android: android, iOS: ios),
       onDidReceiveNotificationResponse: (response) {
