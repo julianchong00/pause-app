@@ -1654,6 +1654,102 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ws3dR",
+                  "name": "Decision Row Pending",
+                  "width": "fill_container",
+                  "fill": "$--bg-card",
+                  "cornerRadius": "$--radius-md",
+                  "gap": 12,
+                  "padding": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "P7p7J",
+                      "name": "Row Left",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Wv4IS",
+                          "name": "row2Label",
+                          "fill": "$--text-primary",
+                          "content": "Standing Desk",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "myMjG",
+                          "name": "Row Details",
+                          "width": "fill_container",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "T9Lv3",
+                              "name": "row2Price",
+                              "fill": "$--text-secondary",
+                              "content": "$320.00",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "juE0q",
+                              "name": "row2Dot",
+                              "fill": "$--text-tertiary",
+                              "content": "·",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "XZ0oD",
+                              "name": "row2Date",
+                              "fill": "$--text-tertiary",
+                              "content": "Jun 16",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "z1Vxy",
+                      "name": "Badge Pending",
+                      "fill": "#9CA3AF20",
+                      "cornerRadius": 20,
+                      "padding": [
+                        6,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "O8Pka",
+                          "name": "Pending Label",
+                          "fill": "$--text-tertiary",
+                          "content": "Pending",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
