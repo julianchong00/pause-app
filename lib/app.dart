@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -20,11 +22,7 @@ class PauseApp extends ConsumerStatefulWidget {
   final bool hasProfile;
   final PurchaseEvaluation? initialEvaluation;
 
-  const PauseApp({
-    super.key,
-    required this.hasProfile,
-    this.initialEvaluation,
-  });
+  const PauseApp({super.key, required this.hasProfile, this.initialEvaluation});
 
   @override
   ConsumerState<PauseApp> createState() => _PauseAppState();
@@ -32,6 +30,8 @@ class PauseApp extends ConsumerStatefulWidget {
 
 class _PauseAppState extends ConsumerState<PauseApp> {
   late final GoRouter _router;
+  StreamSubscription<PurchaseEvaluation>? _sub;
+  String? _coldStartId;
 
   @override
   void initState() {
@@ -50,11 +50,13 @@ class _PauseAppState extends ConsumerState<PauseApp> {
           routes: [
             GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
             GoRoute(
-                path: '/history',
-                builder: (context, state) => const HistoryScreen()),
+              path: '/history',
+              builder: (context, state) => const HistoryScreen(),
+            ),
             GoRoute(
-                path: '/settings',
-                builder: (context, state) => const SettingsScreen()),
+              path: '/settings',
+              builder: (context, state) => const SettingsScreen(),
+            ),
           ],
         ),
         GoRoute(
@@ -66,24 +68,35 @@ class _PauseAppState extends ConsumerState<PauseApp> {
         GoRoute(
           parentNavigatorKey: _rootNavigatorKey,
           path: '/history/result',
-          builder: (context, state) =>
-              HistoryResultScreen(evaluation: state.extra as PurchaseEvaluation),
+          builder: (context, state) => HistoryResultScreen(
+            evaluation: state.extra as PurchaseEvaluation,
+          ),
         ),
       ],
     );
 
     // Cold-start deep link.
     if (widget.initialEvaluation != null) {
+      _coldStartId = widget.initialEvaluation!.id;
       WidgetsBinding.instance.addPostFrameCallback((_) {
         _router.push('/results', extra: widget.initialEvaluation);
       });
     }
 
     // Foreground taps.
-    ref
-        .read(notificationServiceProvider)
-        .onSelect
-        .listen((evaluation) => _router.push('/results', extra: evaluation));
+    _sub = ref.read(notificationServiceProvider).onSelect.listen((evaluation) {
+      if (evaluation.id == _coldStartId) {
+        _coldStartId = null;
+        return;
+      }
+      _router.push('/results', extra: evaluation);
+    });
+  }
+
+  @override
+  void dispose() {
+    _sub?.cancel();
+    super.dispose();
   }
 
   @override
