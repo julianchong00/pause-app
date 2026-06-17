@@ -17,6 +17,8 @@ class AppColors {
   static const successBadgeBg = Color(0x2034D399);
   static const dangerBadgeText = Color(0xFFF87171);
   static const dangerBadgeBg = Color(0x20F87171);
+  static const pendingBadgeText = Color(0xFF9CA3AF);
+  static const pendingBadgeBg = Color(0x209CA3AF);
   static const border = Color(0xFF2A2D35);
   static const navBackground = Color(0xFF161920);
 }

@@ -60,8 +60,7 @@ class HistoryResultScreen extends ConsumerWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        if (evaluation.worthIt != null)
-                          DecisionBadge(worthIt: evaluation.worthIt!),
+                        DecisionBadge(worthIt: evaluation.worthIt),
                       ],
                     ),
                     const SizedBox(height: 24),
