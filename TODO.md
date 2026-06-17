@@ -18,7 +18,7 @@ These are legal-compliance issues or visibly broken UI that would either get the
 
 - [x] **Feedback button is a stub** — `lib/screens/settings/settings_screen.dart:143` has an empty `onTap`. Wire to a `mailto:` URL or remove the row. Spec: `docs/superpowers/specs/2026-05-21-feedback-button-design.md`.
 
-- [ ] **Register a domain and configure feedback email** — The feedback button spec uses a placeholder address (`feedback@pause.app`) backed by an unregistered domain. Before shipping, register a real domain (or pick a free alternative like a Gmail address), set up email forwarding, and update `kFeedbackEmail` in `lib/constants.dart`. Without this, feedback emails bounce.
+- [ ] **Register a domain, configure feedback email, and publish the privacy policy** — Both the feedback address (`feedback@pause.app`) and the privacy policy URL (`https://pause.app/privacy`) are placeholders backed by an unregistered domain. Before shipping, register a real domain (or pick a free alternative like a Gmail address), then: (1) set up email forwarding and update `kFeedbackEmail` in `lib/constants.dart` — otherwise feedback emails bounce; (2) publish `docs/privacy-policy.md` (review the draft first) at a stable URL and update `kPrivacyPolicyUrl` in `lib/constants.dart` — otherwise the in-app Privacy policy link 404s. The Privacy policy item above stays unchecked until step 2 is done.
 
 - [ ] **Dark mode toggle is non-functional** — Settings has a toggle that does nothing; app is hardcoded to dark theme. Either implement light/dark/system theme switching with persistence, or remove the toggle.
 
