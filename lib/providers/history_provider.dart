@@ -46,6 +46,23 @@ class HistoryNotifier extends StateNotifier<List<PurchaseEvaluation>> {
     await _save();
   }
 
+  bool containsId(String id) => state.any((e) => e.id == id);
+
+  Future<void> ensurePending(PurchaseEvaluation evaluation) async {
+    if (containsId(evaluation.id)) return;
+    state = [evaluation, ...state];
+    await _save();
+  }
+
+  Future<void> recordDecision(
+      PurchaseEvaluation evaluation, bool worthIt) async {
+    if (containsId(evaluation.id)) {
+      await updateDecision(evaluation.id, worthIt);
+    } else {
+      await addEvaluation(evaluation.copyWith(worthIt: worthIt));
+    }
+  }
+
   double get monthlyReconsideredTotal {
     final now = DateTime.now();
     return state
