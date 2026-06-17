@@ -29,14 +29,16 @@ class ResultsScreen extends ConsumerWidget {
 
     Future<void> saveDecision(bool worthIt) async {
       final notifier = ref.read(historyProvider.notifier);
+      final service = ref.read(notificationServiceProvider);
       await notifier.recordDecision(evaluation, worthIt);
-      await ref.read(notificationServiceProvider).cancelReminder(evaluation.id);
+      await service.cancelReminder(evaluation.id);
       if (context.mounted) context.go('/history');
     }
 
     Future<void> snooze() async {
       final notifier = ref.read(historyProvider.notifier);
       final service = ref.read(notificationServiceProvider);
+      final messenger = ScaffoldMessenger.of(context);
       final snoozeDays = profile?.snoozeDays ?? 3;
 
       await notifier.ensurePending(evaluation);
@@ -44,8 +46,8 @@ class ResultsScreen extends ConsumerWidget {
       final granted = await service.requestPermission();
       if (granted) {
         await service.scheduleReminder(evaluation, snoozeDays);
-      } else if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
+      } else {
+        messenger.showSnackBar(
           const SnackBar(
             content: Text('Saved. Enable notifications to get reminders.'),
           ),

@@ -111,6 +111,46 @@ void main() {
     expect(fake.scheduled, contains('p1'));
     expect(find.text('HISTORY SCREEN'), findsOneWidget);
   });
+
+  testWidgets(
+      'tapping snooze with permission denied saves pending, skips scheduling, and routes to History',
+      (tester) async {
+    final fake = FakeNotificationService()..permissionGranted = false;
+    final history = _StubHistoryNotifier();
+
+    final router = GoRouter(
+      initialLocation: '/results',
+      routes: [
+        GoRoute(
+            path: '/results',
+            builder: (c, s) => ResultsScreen(evaluation: _eval())),
+        GoRoute(
+            path: '/history',
+            builder: (c, s) => const Scaffold(body: Text('HISTORY SCREEN'))),
+      ],
+    );
+
+    await tester.pumpWidget(ProviderScope(
+      overrides: [
+        notificationServiceProvider.overrideWithValue(fake),
+        historyProvider.overrideWith((ref) => history),
+        profileProvider.overrideWith((ref) =>
+            _StubProfile(const UserProfile(annualSalary: 100000, snoozeDays: 3))),
+      ],
+      child: MaterialApp.router(routerConfig: router),
+    ));
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.text('Remind me in 3 days'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Remind me in 3 days'));
+    await tester.pumpAndSettle();
+
+    expect(history.containsId('p1'), isTrue);
+    expect(history.state.single.worthIt, isNull);
+    expect(fake.scheduled, isEmpty);
+    expect(find.text('HISTORY SCREEN'), findsOneWidget);
+  });
 }
 
 class _StubProfile extends ProfileNotifier {
