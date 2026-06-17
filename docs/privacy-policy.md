@@ -11,6 +11,8 @@
 
 pause is a personal-finance reflection tool that helps you understand the real cost of purchases in terms of your working hours, days, and monthly income. This Privacy Policy explains what information pause stores, where it is kept, and how it is (and is not) used. Because pause is designed to work entirely on your device, it has no backend, no accounts, and no analytics — your financial data stays with you.
 
+pause is open source. You can review the full source code — and verify the data practices described in this policy — at https://github.com/julianchong00/pause-app.
+
 ---
 
 ## Information we store
