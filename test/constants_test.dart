@@ -34,4 +34,16 @@ void main() {
       expect(kFeedbackEmail, matches(RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')));
     });
   });
+
+  group('kPrivacyPolicyUrl', () {
+    test('is non-empty', () {
+      expect(kPrivacyPolicyUrl, isNotEmpty);
+    });
+
+    test('is a well-formed absolute https URL', () {
+      final uri = Uri.parse(kPrivacyPolicyUrl);
+      expect(uri.scheme, 'https');
+      expect(uri.host, isNotEmpty);
+    });
+  });
 }
