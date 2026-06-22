@@ -12,8 +12,12 @@ class HistoryNotifier extends StateNotifier<List<PurchaseEvaluation>> {
   static const _boxName = 'history';
   static const _key = 'evaluations';
 
+  /// Completes once the initial load from Hive has finished. Mutators await
+  /// this so an early write isn't clobbered by the async load assigning state.
+  late final Future<void> _ready;
+
   HistoryNotifier() : super([]) {
-    _load();
+    _ready = _load();
   }
 
   Future<void> _load() async {
@@ -34,11 +38,13 @@ class HistoryNotifier extends StateNotifier<List<PurchaseEvaluation>> {
   }
 
   Future<void> addEvaluation(PurchaseEvaluation evaluation) async {
+    await _ready;
     state = [evaluation, ...state];
     await _save();
   }
 
   Future<void> updateDecision(String id, bool worthIt) async {
+    await _ready;
     state = [
       for (final e in state)
         if (e.id == id) e.copyWith(worthIt: worthIt) else e,
@@ -49,6 +55,7 @@ class HistoryNotifier extends StateNotifier<List<PurchaseEvaluation>> {
   bool containsId(String id) => state.any((e) => e.id == id);
 
   Future<void> ensurePending(PurchaseEvaluation evaluation) async {
+    await _ready;
     if (containsId(evaluation.id)) return;
     state = [evaluation, ...state];
     await _save();
@@ -56,6 +63,7 @@ class HistoryNotifier extends StateNotifier<List<PurchaseEvaluation>> {
 
   Future<void> recordDecision(
       PurchaseEvaluation evaluation, bool worthIt) async {
+    await _ready;
     if (containsId(evaluation.id)) {
       await updateDecision(evaluation.id, worthIt);
     } else {
