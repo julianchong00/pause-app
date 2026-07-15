@@ -6,6 +6,7 @@ import '../../theme/app_theme.dart';
 import '../../models/purchase_evaluation.dart';
 import '../../providers/profile_provider.dart';
 import '../../providers/history_provider.dart';
+import '../../providers/notification_provider.dart';
 import '../../providers/currency_provider.dart';
 import '../../widgets/stat_card.dart';
 
@@ -26,10 +27,33 @@ class ResultsScreen extends ConsumerWidget {
     final percent = evaluation.percentOfMonthly(monthlyTakeHome);
     final opportunityCost = evaluation.opportunityCost;
 
-    void saveDecision(bool worthIt) {
-      final decided = evaluation.copyWith(worthIt: worthIt);
-      ref.read(historyProvider.notifier).addEvaluation(decided);
-      context.go('/');
+    Future<void> saveDecision(bool worthIt) async {
+      final notifier = ref.read(historyProvider.notifier);
+      final service = ref.read(notificationServiceProvider);
+      await notifier.recordDecision(evaluation, worthIt);
+      await service.cancelReminder(evaluation.id);
+      if (context.mounted) context.go('/history');
+    }
+
+    Future<void> snooze() async {
+      final notifier = ref.read(historyProvider.notifier);
+      final service = ref.read(notificationServiceProvider);
+      final messenger = ScaffoldMessenger.of(context);
+      final snoozeDays = profile?.snoozeDays ?? 3;
+
+      await notifier.ensurePending(evaluation);
+      await service.cancelReminder(evaluation.id);
+      final granted = await service.requestPermission();
+      if (granted) {
+        await service.scheduleReminder(evaluation, snoozeDays);
+      } else {
+        messenger.showSnackBar(
+          const SnackBar(
+            content: Text('Saved. Enable notifications to get reminders.'),
+          ),
+        );
+      }
+      if (context.mounted) context.go('/history');
     }
 
     return Scaffold(
@@ -157,12 +181,7 @@ class ResultsScreen extends ConsumerWidget {
                     // Snooze link
                     Center(
                       child: TextButton(
-                        onPressed: () {
-                          // TODO: Implement flutter_local_notifications reminder
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Reminder feature coming soon')),
-                          );
-                        },
+                        onPressed: snooze,
                         child: Text(
                           'Remind me in ${profile?.snoozeDays ?? 3} days',
                           style: AppTextStyles.label.copyWith(

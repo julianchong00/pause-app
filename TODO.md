@@ -14,7 +14,7 @@ These are legal-compliance issues or visibly broken UI that would either get the
 
 - [x] **Onboarding currency hardcoding** — `lib/screens/onboarding/onboarding_screen.dart:245,294,300` shows `$` prefix and `$5,200` / `$750,000` placeholders regardless of locale. A non-USD user enters salary in `$` then sees their selected currency everywhere afterward. Resolve by exposing the currency picker during onboarding (step 1 or pre-step-1) and threading the selection through the placeholders. Spec: `docs/superpowers/specs/2026-06-04-onboarding-currency-design.md`.
 
-- [ ] **"Remind me" snooze button is non-functional** — `lib/screens/results/results_screen.dart:162` has a TODO for `flutter_local_notifications`. Either implement notification-based reminders or remove the button. Apple flags non-functional UI in review.
+- [x] **"Remind me" snooze button is non-functional** — implemented with `flutter_local_notifications`. Snoozing saves the purchase as Pending in History and schedules a local reminder; tapping the notification reopens the Results screen to decide. Re-snooze reschedules without duplicating; deciding a pending item updates in place. Spec: `docs/superpowers/specs/2026-06-17-snooze-reminders-design.md`. _(Pending on-device verification of notification delivery — see plan Task 9.)_
 
 - [x] **Feedback button is a stub** — `lib/screens/settings/settings_screen.dart:143` has an empty `onTap`. Wire to a `mailto:` URL or remove the row. Spec: `docs/superpowers/specs/2026-05-21-feedback-button-design.md`.
 
@@ -44,7 +44,7 @@ Items the audit flagged as minor or items already in the original TODO. Mostly s
 
 - [ ] **Item name contrast on results screen** — Text contrast is too low on history result screen item names.
 
-- [ ] **Worth It / Not Worth It buttons should navigate to History** — On the results screen, tapping either decision button currently returns the user to Home. They should land on the History screen instead, so the user immediately sees the decision they just logged in context with prior ones. Check `lib/screens/results/results_screen.dart` for the current pop/push targets.
+- [x] **Worth It / Not Worth It buttons should navigate to History** — Results decision buttons now `context.go('/history')` (done as part of the snooze-reminders work).
 
 - [ ] **Revisit onboarding currency row styling** — The inline "Currency" row added to Step 1 of onboarding (between subtitle and Annual/Hourly toggle) is functionally fine but borrows the Settings row idiom verbatim (label + value + chevron on a `bg-input` card). Consider a treatment that feels more native to the onboarding screen — e.g. a compact pill, integrating the currency into the salary input prefix, or a less heavy visual weight so it doesn't compete with the toggle and amount input directly below it.
 

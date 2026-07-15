@@ -101,7 +101,9 @@ class HistoryScreen extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final item = history[index];
                 return GestureDetector(
-                  onTap: () => context.push('/history/result', extra: item),
+                  onTap: () => item.worthIt == null
+                      ? context.push('/results', extra: item)
+                      : context.push('/history/result', extra: item),
                   child: Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -146,8 +148,7 @@ class HistoryScreen extends ConsumerWidget {
                           ],
                         ),
                       ),
-                      if (item.worthIt != null)
-                        DecisionBadge(worthIt: item.worthIt!),
+                      DecisionBadge(worthIt: item.worthIt),
                     ],
                   ),
                 ),

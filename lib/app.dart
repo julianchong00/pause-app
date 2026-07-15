@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'models/purchase_evaluation.dart';
+import 'providers/notification_provider.dart';
 import 'screens/history/history_screen.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/onboarding/onboarding_screen.dart';
@@ -14,16 +18,27 @@ import 'widgets/bottom_nav.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
-class PauseApp extends StatelessWidget {
+class PauseApp extends ConsumerStatefulWidget {
   final bool hasProfile;
+  final PurchaseEvaluation? initialEvaluation;
 
-  const PauseApp({super.key, required this.hasProfile});
+  const PauseApp({super.key, required this.hasProfile, this.initialEvaluation});
 
   @override
-  Widget build(BuildContext context) {
-    final router = GoRouter(
+  ConsumerState<PauseApp> createState() => _PauseAppState();
+}
+
+class _PauseAppState extends ConsumerState<PauseApp> {
+  late final GoRouter _router;
+  StreamSubscription<PurchaseEvaluation>? _sub;
+  String? _coldStartId;
+
+  @override
+  void initState() {
+    super.initState();
+    _router = GoRouter(
       navigatorKey: _rootNavigatorKey,
-      initialLocation: hasProfile ? '/' : '/onboarding',
+      initialLocation: widget.hasProfile ? '/' : '/onboarding',
       routes: [
         GoRoute(
           path: '/onboarding',
@@ -33,10 +48,7 @@ class PauseApp extends StatelessWidget {
           navigatorKey: _shellNavigatorKey,
           builder: (context, state, child) => _ShellScaffold(child: child),
           routes: [
-            GoRoute(
-              path: '/',
-              builder: (context, state) => const HomeScreen(),
-            ),
+            GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
             GoRoute(
               path: '/history',
               builder: (context, state) => const HistoryScreen(),
@@ -50,27 +62,50 @@ class PauseApp extends StatelessWidget {
         GoRoute(
           parentNavigatorKey: _rootNavigatorKey,
           path: '/results',
-          builder: (context, state) {
-            final evaluation = state.extra as PurchaseEvaluation;
-            return ResultsScreen(evaluation: evaluation);
-          },
+          builder: (context, state) =>
+              ResultsScreen(evaluation: state.extra as PurchaseEvaluation),
         ),
         GoRoute(
           parentNavigatorKey: _rootNavigatorKey,
           path: '/history/result',
-          builder: (context, state) {
-            final evaluation = state.extra as PurchaseEvaluation;
-            return HistoryResultScreen(evaluation: evaluation);
-          },
+          builder: (context, state) => HistoryResultScreen(
+            evaluation: state.extra as PurchaseEvaluation,
+          ),
         ),
       ],
     );
 
+    // Cold-start deep link.
+    if (widget.initialEvaluation != null) {
+      _coldStartId = widget.initialEvaluation!.id;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _router.push('/results', extra: widget.initialEvaluation);
+      });
+    }
+
+    // Foreground taps.
+    _sub = ref.read(notificationServiceProvider).onSelect.listen((evaluation) {
+      if (evaluation.id == _coldStartId) {
+        _coldStartId = null;
+        return;
+      }
+      _router.push('/results', extra: evaluation);
+    });
+  }
+
+  @override
+  void dispose() {
+    _sub?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Pause',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,
-      routerConfig: router,
+      routerConfig: _router,
     );
   }
 }
